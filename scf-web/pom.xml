@@ -72,7 +72,16 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <active.profiles>dev</active.profiles>
+            </properties>
             <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -98,23 +107,35 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
+            <properties>
+                <active.profiles>prod</active.profiles>
+            </properties>
             <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
                 <plugins>
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.4.0</version>
+                        <groupId>com.github.bringking</groupId>
+                        <artifactId>requirejs-maven-plugin</artifactId>
+                        <version>2.0.4</version>
                         <executions>
-                            <execution><!-- Run our version calculation script -->
-                                <id>js processing</id>
-                                <phase>process-resources</phase>
+                            <execution>
                                 <goals>
-                                    <goal>exec</goal>
+                                    <goal>optimize</goal>
                                 </goals>
                             </execution>
                         </executions>
                         <configuration>
-                            <executable>${project.basedir}/jsbuild/process-scripts.sh</executable>
+                            <configFile>
+                                ${project.basedir}/require-prod-build.js
+                            </configFile>
+                            <skip>
+                                false
+                            </skip>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -131,8 +152,8 @@
                                 </resource>
                                 <resource>
                                     <!-- this is relative to the pom.xml directory -->
-                                    <directory>src/main/javascript/vendor</directory>
-                                    <targetPath>/static/vendor</targetPath>
+                                    <directory>src/main/javascript/js/vendor</directory>
+                                    <targetPath>/static/js/vendor</targetPath>
                                 </resource>
                             </webResources>
                         </configuration>

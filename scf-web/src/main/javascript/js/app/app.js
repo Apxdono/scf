@@ -1,14 +1,13 @@
 define([
     'require',
     'angular',
-    './controller/controller-module',
+    'angular-router',
     './controller/main-ctrl'
 ],function(r,ng){
-    'use strict;'
-
-    var app = ng.module('app',['app.controllers']);
-    (function bootstrap(){
-        ng.bootstrap(document,['app']);
-    })();
+    var app = ng.module('app',['ngRoute','app.controllers']);
+    function bs(){
+        ng.bootstrap($(document).find('html')[0],['app']);
+    }
+    $(document).ready(bs);
     return app;
 });

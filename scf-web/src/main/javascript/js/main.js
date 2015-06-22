@@ -1,21 +1,17 @@
-try{
-    (function (window) {
-        window.require.config({
-            baseUrl: '/static',
-            waitSeconds: 0,
-            paths: {
-                'angular' : 'vendor/angular/angular.min'
-            },
+require.config({
+    baseUrl: '/static/js',
+    waitSeconds: 0,
+    paths: {
+        'angular': 'vendor/angular/angular',
+        'angular-router': 'vendor/angular-route/angular-route'
+    },
 
-            shim: {
-                'angular': {
-                    exports: 'angular'
-                }
-            },
+    shim: {
+        'angular': {
+            exports: 'angular'
+        },
+        'angular-router': ['angular']
+    },
 
-            deps: ['js/app/app']
-        });
-    })(window);
-} finally {
-
-}
+    deps : ['app/app']
+});
