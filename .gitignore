@@ -3,8 +3,8 @@ dist
 node_modules
 vendor
 .idea
-
-.iml
+*.prj
+*.iml
 .project
 .classpath
 
