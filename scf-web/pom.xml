@@ -124,18 +124,15 @@
                         <version>2.0.4</version>
                         <executions>
                             <execution>
+                                <phase>compile</phase>
                                 <goals>
                                     <goal>optimize</goal>
                                 </goals>
                             </execution>
                         </executions>
                         <configuration>
-                            <configFile>
-                                ${project.basedir}/require-prod-build.js
-                            </configFile>
-                            <skip>
-                                false
-                            </skip>
+                            <configFile>${project.basedir}/require-prod-build.js</configFile>
+                            <skip>false</skip>
                         </configuration>
                     </plugin>
                     <plugin>

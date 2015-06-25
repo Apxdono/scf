@@ -8,15 +8,14 @@
     generateSourceMaps : false,
     preserveLicenseComments : false,
     optimize : 'uglify2',
-    uglify2 : {
-        output: {
-            beautify : false,
-            mangle : true
-        },
-        beautify: {
-            semicolons: false
-        }
-    },
+    //uglify2 : {
+    //    output: {
+    //        beautify : false,
+    //    },
+    //    beautify: {
+    //        semicolons: false
+    //    }
+    //},
     paths: {
         angular : 'empty:',
         'angular-router' : 'empty:'
