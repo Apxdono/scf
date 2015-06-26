@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, .app-container, .nav-menu, .app-content {
+    height: 100%;
+}
+
+.app-container:before {
+    content: '';
+    height: 100%;
+    float: left;
+}
+
+.height-trim {
+    position: relative;
+    z-index: 1;
+}
+
+.height-trim:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.app-container-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-bottom: -55px;
+}
+
+.nav-menu {
+    float: left;
+}
+
+.nav-menu, .app-content {
+    overflow: auto;
+}
+
+/*For demonstration only*/
+.header {
+    text-align: center;
+    height: 55px;
+}
+
+.nav-menu,.nav-head {
+
+    min-width: 230px;
+    width: 230px;
+    border-right:1px solid #CCC;
+}
+
+.app-content {
+
+
+}
+
+.content-head{
+    background: #fbfbfb;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-head{
+    /*background: #f9f9f9;*/
+    float:left;
+    border-bottom: 1px solid #CCC;
+    box-sizing: border-box;
+}
+
+p {
+    font-size: 1.3em;
+}
+
+.Important {
+    font-weight: bolder;
+    color: white;
+}
