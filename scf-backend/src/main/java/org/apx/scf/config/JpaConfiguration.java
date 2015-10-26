@@ -2,13 +2,21 @@ package org.apx.scf.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.apx.scf.util.PropertiesLoader;
+import org.eclipse.persistence.internal.jpa.transaction.TransactionManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.orm.jpa.JpaDialect;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
@@ -51,6 +59,48 @@ public class JpaConfiguration {
         return ds;
     }
 
+    @Autowired
+    @Bean(name = "entityManager")
+    public EntityManagerFactory entityManagerFactory(
+            @Qualifier("jdbcProperties") Properties jdbcProperties,
+            @Qualifier("jpaProperties") Properties jpaProperties,
+            @Qualifier("dataSource") DataSource ds,
+            @Qualifier("jpaVendorAdapter") JpaVendorAdapter vendor){
+        LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(ds);
+        emf.setJpaVendorAdapter(vendor);
+        emf.setJpaDialect(new EclipseLinkJpaDialect());
+        emf.setJpaProperties(jpaProperties);
+        emf.setPersistenceUnitName("scf_unit");
+        emf.setPackagesToScan(jdbcProperties.getProperty("db.packages.to.scan").split(";"));
+        emf.afterPropertiesSet();
+        return emf.getObject();
+    }
+
+    @Bean(name = "jpaVendorAdapter")
+    public JpaVendorAdapter jpaVendorAdapter(){
+        JpaVendorAdapter vendor = new EclipseLinkJpaVendorAdapter();
+        return vendor;
+    }
+
+    @Bean(name = "transactionManager")
+    @Autowired
+    public JpaTransactionManager transactionManager(
+            @Qualifier("jpaDialect") JpaDialect dialect,
+            @Qualifier("dataSource") DataSource dataSource,
+            @Qualifier("entityManager") EntityManagerFactory emf){
+        JpaTransactionManager txm = new JpaTransactionManager();
+        txm.setJpaDialect(dialect);
+        txm.setDataSource(dataSource);
+        txm.setEntityManagerFactory(emf);
+        return txm;
+    }
+
+
+    @Bean(name = "jpaDialect")
+    public JpaDialect jpaDialect(){
+        return new EclipseLinkJpaDialect();
+    }
 
 
 
