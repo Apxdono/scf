@@ -1,20 +1,24 @@
 package org.apx.scf.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import org.apx.scf.config.util.jpa.audit.AuditingDateTimeProvider;
+import org.apx.scf.config.util.jpa.audit.CurrentTimeDateTimeService;
+import org.apx.scf.config.util.jpa.audit.DateTimeService;
 import org.apx.scf.util.PropertiesLoader;
-import org.eclipse.persistence.internal.jpa.transaction.TransactionManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
+import org.springframework.data.auditing.DateTimeProvider;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaDialect;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -25,7 +29,10 @@ import java.util.Properties;
  * Created by oleg on 19.06.2015.
  */
 @Configuration
-@ComponentScan("org.apx.scf.repository;org.apx.scf.service")
+@EnableTransactionManagement(mode = AdviceMode.PROXY)
+@EnableJpaRepositories(basePackages = "org.apx.scf",repositoryBaseClass = JpaRepository.class)
+@EnableJpaAuditing(dateTimeProviderRef = "dateTimeProvider")
+@ComponentScan("org.apx.scf.service")
 public class JpaConfiguration {
 
     @Bean(name="jpaProperties") @Profile("dev")
@@ -102,6 +109,15 @@ public class JpaConfiguration {
         return new EclipseLinkJpaDialect();
     }
 
+    @Bean(name = "dateTimeService")
+    public DateTimeService dateTimeService(){
+        return new CurrentTimeDateTimeService();
+    }
 
+    @Bean(name = "dateTimeProvider")
+    @Autowired
+    public DateTimeProvider dateTimeProvider(DateTimeService dateTimeService){
+        return new AuditingDateTimeProvider(dateTimeService);
+    }
 
 }
