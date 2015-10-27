@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfiguration.class},loader = AnnotationConfigContextLoader.class)
 @ActiveProfiles({"dev"})
-@TransactionConfiguration(defaultRollback=false)
+@TransactionConfiguration(defaultRollback=true)
 public class JpaConfigurationTests {
 
     static final Logger LOG = LoggerFactory.getLogger(JpaConfigurationTests.class);
@@ -67,13 +67,28 @@ public class JpaConfigurationTests {
 
     @Test
     @Transactional
-    public void testDummy() throws SQLException {
-        DummyObject dummy = new DummyObject();
-        dummy.setDisplayName("Test dummy object");
-        dummy.setSystemName("Test dummy object");
+    public void testEntityManager() throws SQLException {
+        DummyObject dummy = getDummy(null,"Test dummy object using entity manager");
         entityManager.persist(dummy);
         assertThat("No id was assigned for object during persist", dummy.getId(), notNullValue());
         assertThat("Object was not persisted",entityManager.find(DummyObject.class,dummy.getId()),notNullValue());
+    }
+
+    @Test
+    @Transactional
+    public void testRepository() throws SQLException {
+        DummyObject dummy = getDummy(null,"Test dummy object using repository");
+        DummyObject d2 = repo.save(dummy);
+        assertThat("No id was assigned for object during persist", d2.getId(), notNullValue());
+        assertThat("Object was not persisted", repo.findOne(d2.getId()), notNullValue());
+    }
+
+
+    public static DummyObject getDummy(String name, String systemName){
+        DummyObject dummy = new DummyObject();
+        dummy.setDisplayName(name != null ? name:"Test dummy object");
+        dummy.setSystemName(systemName != null ? systemName:"Test dummy object");
+        return dummy;
     }
 
 }
