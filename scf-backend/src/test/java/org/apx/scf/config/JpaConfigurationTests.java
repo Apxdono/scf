@@ -1,6 +1,7 @@
 package org.apx.scf.config;
 
 import org.apx.scf.domain.DummyObject;
+import org.apx.scf.repository.DummyRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {JpaConfiguration.class},loader = AnnotationConfigContextLoader.class)
 @ActiveProfiles({"dev"})
-@TransactionConfiguration(defaultRollback=true)
+@TransactionConfiguration(defaultRollback=false)
 public class JpaConfigurationTests {
 
     static final Logger LOG = LoggerFactory.getLogger(JpaConfigurationTests.class);
@@ -46,6 +47,9 @@ public class JpaConfigurationTests {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @Autowired
+    DummyRepository repo;
 
     @Test
     public void testJpaProperties(){
@@ -64,12 +68,11 @@ public class JpaConfigurationTests {
     @Test
     @Transactional
     public void testDummy() throws SQLException {
-        testDatasource();
         DummyObject dummy = new DummyObject();
         dummy.setDisplayName("Test dummy object");
         dummy.setSystemName("Test dummy object");
         entityManager.persist(dummy);
-        assertThat("No id was assigned for object during persist",dummy.getId(),notNullValue());
+        assertThat("No id was assigned for object during persist", dummy.getId(), notNullValue());
         assertThat("Object was not persisted",entityManager.find(DummyObject.class,dummy.getId()),notNullValue());
     }
 

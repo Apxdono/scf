@@ -30,7 +30,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement(mode = AdviceMode.PROXY)
-@EnableJpaRepositories(basePackages = "org.apx.scf",repositoryBaseClass = JpaRepository.class)
+@EnableJpaRepositories(basePackages = "org.apx.scf.repository")
 @EnableJpaAuditing(dateTimeProviderRef = "dateTimeProvider")
 @ComponentScan("org.apx.scf.service")
 public class JpaConfiguration {
@@ -67,7 +67,7 @@ public class JpaConfiguration {
     }
 
     @Autowired
-    @Bean(name = "entityManager")
+    @Bean(name = "entityManagerFactory")
     public EntityManagerFactory entityManagerFactory(
             @Qualifier("jdbcProperties") Properties jdbcProperties,
             @Qualifier("jpaProperties") Properties jpaProperties,
@@ -95,7 +95,7 @@ public class JpaConfiguration {
     public JpaTransactionManager transactionManager(
             @Qualifier("jpaDialect") JpaDialect dialect,
             @Qualifier("dataSource") DataSource dataSource,
-            @Qualifier("entityManager") EntityManagerFactory emf){
+            @Qualifier("entityManagerFactory") EntityManagerFactory emf){
         JpaTransactionManager txm = new JpaTransactionManager();
         txm.setJpaDialect(dialect);
         txm.setDataSource(dataSource);
