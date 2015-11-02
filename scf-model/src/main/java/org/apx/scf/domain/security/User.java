@@ -2,6 +2,7 @@ package org.apx.scf.domain.security;
 
 import org.apx.scf.annotations.EncodeField;
 import org.apx.scf.annotations.EncodedFields;
+import org.springframework.cglib.reflect.FastMethod;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +16,10 @@ import java.util.List;
 @Entity
 @Table(name = "users", schema = "security")
 //@ColumnPrefix("usr")
-//@AttributeOverrides({
-//        @AttributeOverride(name = "name", column = @Column(name = "username")),
-//        @AttributeOverride(name = "systemName", column = @Column(name = "login",unique = true,updatable = false,insertable = true,nullable = false))
-//})
+@AttributeOverrides({
+        @AttributeOverride(name = "displayName", column = @Column(name = "username")),
+        @AttributeOverride(name = "systemName", column = @Column(name = "login",unique = true,updatable = false,insertable = true,nullable = false))
+})
 @EncodedFields(fields = {
         @EncodeField(fieldName = "password",encoder = "md5Encoder")
 })

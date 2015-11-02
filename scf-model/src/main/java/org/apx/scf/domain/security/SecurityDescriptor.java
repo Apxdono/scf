@@ -1,10 +1,7 @@
 package org.apx.scf.domain.security;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.kmware.adb.domain.model.jsonview.View;
-import com.kmware.adb.domain.utils.ColumnPrefix;
+import org.apx.scf.domain.DomainObject;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,15 +13,13 @@ import java.io.Serializable;
  * Created by oleg on 06.05.2015.
  */
 @Entity
-@Table(name = "security_descriptors",catalog = "mrg", schema = "security")
-@ColumnPrefix("sd")
-public class SecurityDescriptor extends BaseEntity implements GrantedAuthority, Serializable {
+@Table(name = "security_descriptors", schema = "security")
+public class SecurityDescriptor extends DomainObject implements GrantedAuthority, Serializable {
     private static final long serialVersionUID = -387705888479897944L;
 
     int priority;
 
     @Column(name = "priority")
-    @JsonView(View.Exposed.class)
     public int getPriority() {
         return priority;
     }
@@ -36,6 +31,6 @@ public class SecurityDescriptor extends BaseEntity implements GrantedAuthority, 
     @Override
     @Transient
     public String getAuthority() {
-        return getInternalName();
+        return getSystemName();
     }
 }

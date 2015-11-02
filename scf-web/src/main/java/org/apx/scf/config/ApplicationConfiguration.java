@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
  * Created by oleg on 19.06.2015.
  */
 @Configuration
-@Import({JpaConfiguration.class})
+@Import({JpaConfiguration.class,SecurityConfig.class})
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = "org.apx.scf.util")
 public class ApplicationConfiguration {
