@@ -63,6 +63,18 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
@@ -111,6 +123,13 @@
                                     <directory>src/main/javascript</directory>
                                     <targetPath>/WEB-INF/static</targetPath>
                                 </resource>
+                                <!--<resource>-->
+                                    <!--<filtering>true</filtering>-->
+                                    <!--<directory>src/main/webapp</directory>-->
+                                    <!--<includes>-->
+                                        <!--<include>**/web.xml</include>-->
+                                    <!--</includes>-->
+                                <!--</resource>-->
                             </webResources>
                         </configuration>
                     </plugin>

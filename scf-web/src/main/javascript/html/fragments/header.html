@@ -4,7 +4,7 @@
 <body >
 <header class="main-header" th:fragment="header">
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a th:href="${#httpServletRequest.contextPath}" class="logo">
         <span class="logo-mini"><b>A</b>LT</span>
         <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
@@ -79,13 +79,13 @@
                 </li>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="../images/unknown.png" class="user-image" alt="User Image"/>
+                        <img th:src="${#httpServletRequest.contextPath+'/images/unknown.png'}" class="user-image" alt="User Image"/>
                         <span class="hidden-xs">Пользователь</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="../images/unknown.png" class="img-circle" alt="User Image"/>
+                            <img th:src="${#httpServletRequest.contextPath+'/images/unknown.png'}" class="img-circle" alt="User Image"/>
 
                             <p>
                                 Пользователь - администратор
