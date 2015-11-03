@@ -1,5 +1,6 @@
 package org.apx.scf.beans;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -29,6 +30,10 @@ public class ApplicationContextHolder {
 
     protected static class SingletonHolder{
         static ApplicationContextHolder instance;
+    }
+
+    public static boolean isProfile(String profileName){
+        return ArrayUtils.contains(instance().ctx.getEnvironment().getActiveProfiles(),profileName+"");
     }
 
 

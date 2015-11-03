@@ -1,11 +1,17 @@
 package org.apx.scf.config;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.dialect.SpringStandardDialect;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.UrlTemplateResolver;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Oleg on 26.10.2015.

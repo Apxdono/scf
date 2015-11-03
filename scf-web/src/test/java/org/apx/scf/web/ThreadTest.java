@@ -10,6 +10,15 @@ import org.junit.Test;
 public class ThreadTest {
 
     @Test
+    public void lol(){
+        int lol = 1;
+
+        while(){
+
+        }
+    }
+
+    @Test
     public void ohShitStack() throws InterruptedException {
         TThread th = new TThread();
         th.start();
