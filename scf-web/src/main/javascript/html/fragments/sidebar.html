@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<body >
+<body>
 
-<aside class="main-sidebar" th:fragment="main">
+
+<aside part-refresh="main" class="main-sidebar" th:fragment="main">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img th:src="${#httpServletRequest.contextPath+'/images/unknown.png'}" class="img-circle" alt="User Image"/>
+                <img th:src="${#httpServletRequest.contextPath+'/images/unknown.png'}" class="img-circle"
+                     alt="User Image"/>
             </div>
             <div class="pull-left info">
                 <p>Пользователь</p>
@@ -60,16 +62,22 @@
         <!-- Home tab content -->
         <div class="tab-pane" id="control-sidebar-home-tab">
             <h3 class="control-sidebar-heading">Recent Activity</h3>
-        </div><!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-pane -->
         <!-- Stats tab content -->
-        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+        <!-- /.tab-pane -->
         <!-- Settings tab content -->
         <div class="tab-pane" id="control-sidebar-settings-tab">
-            <a href="#" th:if="${@applicationContextHolder.isProfile('dev')}" onclick="devTools.reloadWebContext('web');return false;">Перезагрузить веб-контекст приложения</a>
-            <a href="#" th:if="${@applicationContextHolder.isProfile('dev')}" onclick="devTools.reloadWebContext('root');return false;">Перезагрузить основной контекст приложения</a>
-        </div><!-- /.tab-pane -->
+            <a href="#" th:if="${@applicationContextHolder.isProfile('dev')}"
+               onclick="devTools.reloadWebContext('web');return false;">Перезагрузить веб-контекст приложения</a>
+            <a href="#" th:if="${@applicationContextHolder.isProfile('dev')}"
+               onclick="devTools.reloadWebContext('root');return false;">Перезагрузить основной контекст приложения</a>
+        </div>
+        <!-- /.tab-pane -->
     </div>
-</aside><!-- /.control-sidebar -->
+</aside>
+<!-- /.control-sidebar -->
 <!-- Add the sidebar's background. This div must be placed
      immediately after the control sidebar -->
 <div class="control-sidebar-bg"></div>

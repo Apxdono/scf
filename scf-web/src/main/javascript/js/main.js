@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: '/static/js',
+    baseUrl: location.pathname+'js',
     waitSeconds: 0,
     paths: {
         'angular': 'vendor/angular/angular',
