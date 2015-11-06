@@ -6,4 +6,8 @@
             type:type
         }).then();
     }
+
+    devTools.logout = function(){
+        $.get(ctx+'/logout').then();
+    }
 })(window,jQuery);
