@@ -18,13 +18,20 @@
     <link rel="stylesheet" th:href="@{/css/admin/layout.min.css}"/>
 
     <link rel="stylesheet" th:href="@{/css/admin/skin-green.min.css}"/>
+
+    <script type="text/javascript" th:inline="javascript">
+        (function(window){
+            window.appInfo = {
+                contextPath : /*[[${#httpServletRequest.contextPath}]]*/ ''
+            }
+        })(window);
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script th:src="@{/js/vendor/html5shiv/dist/html5shiv.min.js}"></script>
     <script th:src="@{/js/vendor/respond/dest/respond.min.js}"></script>
-
-
     <![endif]-->
 </head>
 <body class="hold-transition skin-green layout-boxed sidebar-mini">
