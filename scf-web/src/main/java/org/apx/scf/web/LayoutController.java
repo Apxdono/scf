@@ -1,5 +1,7 @@
 package org.apx.scf.web;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +21,11 @@ public class LayoutController {
 
     @RequestMapping("/partials")
     public String getUpdatedPartialPage(@RequestParam("template") String templateName,@RequestParam("partName") String partName){
-        System.out.println("Page requested : "+templateName+" with partial: "+partName);
-        return templateName+" :: "+partName;
+        StringBuilder sb = new StringBuilder();
+        sb.append(StringUtils.isNotBlank(templateName)?templateName:"");
+        if(StringUtils.isNotBlank(partName)){
+            sb.append(" :: ").append(partName);
+        }
+        return sb.toString();
     }
 }

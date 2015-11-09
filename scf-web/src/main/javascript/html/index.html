@@ -68,7 +68,7 @@
         <section class="content">
 
             <!-- Default box -->
-            <div class="box" ng-controller="MC">
+            <div class="box" ng-controller="MainCtrl">
                 <div class="box-header with-border">
                     <h3 class="box-title">Title</h3>
                     <div class="box-tools pull-right">
@@ -77,9 +77,14 @@
                     </div>
                 </div>
                 <div class="box-body" part-refresh="'index'" parts="'boxbody'">
-                    <p th:fragment="boxbody">
-                        Сессия <span style="font-weight: bold" th:text="${session}"></span>
-                    </p>
+                    <div th:fragment="boxbody">
+                        <p>
+                            Сессия <span style="font-weight: bold" th:text="${session}"></span>
+                        </p>
+                        <p>
+                            <button ng-click="test()">Нажми меня</button>
+                        </p>
+                    </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     Footer

@@ -1,0 +1,9 @@
+define([
+    'require',
+    'angular',
+    './config'
+],function(r,ng,app){
+    $(document).ready(function(){
+        ng.bootstrap($(document).find('html')[0],['app']);
+    });
+});

@@ -13,5 +13,5 @@ require.config({
         'angular-router': ['angular']
     },
 
-    deps : ['app/app']
+    deps : ['app/startup']
 });

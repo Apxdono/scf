@@ -1,6 +1,6 @@
 define([
     'require',
-    'angular'
+    'angular',
 ],function(r,ng){
     var mod = ng.module('app.directives',[]);
     function $config($compileProvider){

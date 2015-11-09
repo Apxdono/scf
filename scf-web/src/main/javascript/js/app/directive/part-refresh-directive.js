@@ -4,10 +4,10 @@ define([
     './directive-module'
 ], function (r, ng, mod) {
 
-    function doRefresh($http,element,params){
+    function doRefresh(scope,$http,element,params,$compile){
         $http({
             method : 'GET',
-            url : location.pathname+'partials',
+            url : '/partials',
             params : params
         }).then(function(response){
             element.empty().append(response.data);
@@ -15,7 +15,7 @@ define([
         })
     }
 
-    function PartRefresh($log,$http) {
+    function PartRefresh($log,$http,$compile,appevent) {
         return {
             restrict : 'A',
             scope:{
@@ -24,12 +24,15 @@ define([
             },
             link : function(scope,element,attributes){
                 $log.info('will refresh content at selector',scope.partRefresh,'with parts',scope.parts);
-                var listener = scope.$on('updatePartial',function(){
+                var listener = scope.$on(appevent.UPDATE_PARTIALS,function(){
                     $log.info('updating-partials');
-                    doRefresh($http,element,{ template : scope.partRefresh, partName : scope.parts});
+                    $http.get('/partials',{ params : { template : scope.partRefresh, partName : scope.parts}}).then(function(response){
+                        element.empty().append($compile(response.data)(scope.$parent));
+
+                    });
                 });
 
-                var destructor = scope.$on('$destroy',function(){
+                var destructor = scope.$on(appevent.SCOPE_DESTROY,function(){
                     listener();
                     destructor();
                 })
@@ -38,6 +41,6 @@ define([
         }
     }
 
-    PartRefresh.$inject = ['$log','$http'];
+    PartRefresh.$inject = ['$log','$http','$compile','APP_EVENT'];
     (mod.register || mod).directive('partRefresh', PartRefresh);
 });
