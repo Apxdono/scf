@@ -110,13 +110,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return filter;
     }
 
-    @Profile("dev")
-    @Bean(name = "entryPoint")
-    public AuthenticationEntryPoint entryPointDev() {
-        return new DevLFEntryPoint("/login");
-    }
+//    @Profile("dev")
+//    @Bean(name = "entryPoint")
+//    public AuthenticationEntryPoint entryPointDev() {
+//        return new DevLFEntryPoint("/login");
+//    }
 
-    @Profile("prod")
+//    @Profile("prod")
     @Bean(name = "entryPoint")
     public AuthenticationEntryPoint entryPointProd() {
         return new LFEntryPoint("/login");
