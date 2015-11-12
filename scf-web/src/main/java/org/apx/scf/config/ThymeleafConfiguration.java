@@ -3,6 +3,8 @@ package org.apx.scf.config;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.thymeleaf.dialect.IDialect;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.dialect.SpringStandardDialect;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -10,6 +12,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.UrlTemplateResolver;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,6 +39,10 @@ public class ThymeleafConfiguration {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
         engine.setDialect(new SpringStandardDialect());
+        engine.setDialect(new SpringSecurityDialect());
+//        Set<IDialect> extraDialects = new HashSet<>();
+//        extraDialects.add(new SpringSecurityDialect());
+//        engine.setAdditionalDialects(extraDialects);
         return engine;
     }
 

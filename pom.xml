@@ -25,6 +25,7 @@
         <jpa.api.version>2.1.0</jpa.api.version>
         <eclipselink.version>2.5.2</eclipselink.version>
         <thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
+        <thymeleaf.security.version>2.1.2.RELEASE</thymeleaf.security.version>
         <slf4j.version>1.7.6</slf4j.version>
         <commons.lang3.version>3.3.2</commons.lang3.version>
         <servlet.api.version>3.1.0</servlet.api.version>
@@ -182,6 +183,12 @@
                 <groupId>org.thymeleaf</groupId>
                 <artifactId>thymeleaf-spring4</artifactId>
                 <version>${thymeleaf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.thymeleaf.extras</groupId>
+                <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+                <version>${thymeleaf.security.version}</version>
             </dependency>
 
             <!--<dependency>-->
