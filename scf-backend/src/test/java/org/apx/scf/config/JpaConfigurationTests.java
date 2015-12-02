@@ -51,6 +51,8 @@ public class JpaConfigurationTests {
     @Autowired
     DummyRepository repo;
 
+    static String profileName = "dev";
+
     @Test
     public void testJpaProperties(){
         assertThat("Properties were not loaded",jpaProperties,notNullValue());
@@ -86,8 +88,8 @@ public class JpaConfigurationTests {
 
     public static DummyObject getDummy(String name, String systemName){
         DummyObject dummy = new DummyObject();
-        dummy.setDisplayName(name != null ? name:"Test dummy object");
-        dummy.setSystemName(systemName != null ? systemName:"Test dummy object");
+        dummy.setDisplayName(name != null ? name : "Test dummy object");
+        dummy.setSystemName(systemName != null ? systemName : "Test dummy object");
         return dummy;
     }
 

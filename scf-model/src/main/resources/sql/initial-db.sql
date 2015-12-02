@@ -1,10 +1,9 @@
-DROP SCHEMA security;
-DROP SCHEMA test;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" schema pg_catalog;
+DROP SCHEMA IF EXISTS security;
+DROP SCHEMA IF EXISTS test;
 
-CREATE SCHEMA security;
-CREATE SCHEMA test;
-
-DROP TABLE security.security_action;
+CREATE SCHEMA IF NOT EXISTS security;
+DROP TABLE IF EXISTS security.security_action;
 
 CREATE TABLE security.security_action
 (
@@ -24,7 +23,7 @@ WITH (
 OIDS =FALSE
 );
 
-DROP TABLE security.security_descriptors;
+DROP TABLE IF EXISTS security.security_descriptors;
 
 CREATE TABLE security.security_descriptors
 (
@@ -42,7 +41,7 @@ WITH (
 OIDS =FALSE
 );
 
-DROP TABLE security.users;
+DROP TABLE IF EXISTS security.users;
 
 CREATE TABLE security.users
 (
@@ -61,7 +60,7 @@ WITH (
 OIDS =FALSE
 );
 
-DROP TABLE security.users_security_descriptors;
+DROP TABLE IF EXISTS security.users_security_descriptors;
 
 CREATE TABLE security.users_security_descriptors
 (
@@ -78,3 +77,6 @@ CREATE TABLE security.users_security_descriptors
 WITH (
 OIDS =FALSE
 );
+
+
+CREATE SCHEMA IF NOT EXISTS test;
