@@ -3,6 +3,7 @@ package org.apx.scf.config;
 import org.apx.scf.config.extra.DevLFEntryPoint;
 import org.apx.scf.config.extra.LFEntryPoint;
 import org.apx.scf.config.extra.LoginErrorHandler;
+import org.apx.scf.security.repository.ApplicationUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,6 +21,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
@@ -42,6 +45,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     ApplicationContext context;
+
+    @Autowired
+    ApplicationUserDetailsService appUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -71,22 +77,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        super.configure(auth);
-//        auth.userDetailsService(authDetails).
-//                passwordEncoder(new Md5PasswordEncoder());
-        auth.inMemoryAuthentication()
-                .withUser("Oleg")
-                .accountExpired(false)
-                .accountLocked(false)
-                .credentialsExpired(false)
-                .password("oleg")
-                .authorities("ROLE_USER", "ROLE_ADMIN")
-                .roles("USER","ADMIN");
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(appUserDetailsService);
+        auth.authenticationProvider(provider);
+//        auth.inMemoryAuthentication()
+//                .withUser("Oleg")
+//                .accountExpired(false)
+//                .accountLocked(false)
+//                .credentialsExpired(false)
+//                .password("oleg")
+//                .authorities("ROLE_USER", "ROLE_ADMIN")
+//                .roles("USER","ADMIN");
 
     }
 
     @Bean
-    @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

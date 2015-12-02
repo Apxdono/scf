@@ -32,7 +32,7 @@ import java.util.Properties;
 @EnableTransactionManagement(mode = AdviceMode.PROXY)
 @EnableJpaRepositories(basePackages = "org.apx.scf.repository")
 @EnableJpaAuditing(dateTimeProviderRef = "dateTimeProvider")
-@ComponentScan("org.apx.scf.service")
+@ComponentScan("org.apx.scf.service;org.apx.scf.repository")
 public class JpaConfiguration {
 
     @Bean(name="jpaProperties") @Profile("dev")

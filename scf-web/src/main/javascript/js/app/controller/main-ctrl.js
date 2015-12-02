@@ -10,14 +10,14 @@ define([
             $http.get('/test').then(function(){
                 $rootScope.$broadcast(appEvents.UPDATE_PARTIALS);
             });
-            var cb = loginService.on(appEvents.LOGIN_REQUIRED,function(){
-                loginService.trigger(appEvents.LOGIN_SUCCESS,{data:'someData'});
-                cb();
-            })
+            //var cb = loginService.on(appEvents.LOGIN_REQUIRED,function(){
+            //    loginService.trigger(appEvents.LOGIN_SUCCESS,{data:'someData'});
+            //    cb();
+            //})
         }
     }
 
-    MainCtrl.$inject = ['$scope', '$log','$http','$rootScope','APP_EVENT','loginService'];
+    MainCtrl.$inject = ['$scope', '$log','$http','$rootScope','APP_EVENT'];
     var m = mod.register || mod;
     m.controller('MainCtrl', MainCtrl);
 });

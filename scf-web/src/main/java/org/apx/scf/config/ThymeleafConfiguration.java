@@ -39,10 +39,10 @@ public class ThymeleafConfiguration {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
         engine.setDialect(new SpringStandardDialect());
-        engine.setDialect(new SpringSecurityDialect());
-//        Set<IDialect> extraDialects = new HashSet<>();
-//        extraDialects.add(new SpringSecurityDialect());
-//        engine.setAdditionalDialects(extraDialects);
+//        engine.setDialect(new SpringSecurityDialect());
+        Set<IDialect> extraDialects = new HashSet<>();
+        extraDialects.add(new SpringSecurityDialect());
+        engine.setAdditionalDialects(extraDialects);
         return engine;
     }
 

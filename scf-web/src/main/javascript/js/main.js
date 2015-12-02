@@ -11,7 +11,8 @@ require.config({
         'angular': {
             exports: 'angular'
         },
-        'angular-router': ['angular']
+        'angular-router': ['angular'],
+        'angular-http-auth' : ['angular']
     },
 
     deps : ['app/startup']
