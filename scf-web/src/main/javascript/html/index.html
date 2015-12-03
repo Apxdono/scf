@@ -19,6 +19,11 @@
 
     <link rel="stylesheet" th:href="@{/css/admin/skin-green.min.css}"/>
 
+    <link rel="stylesheet" th:href="@{/css/app.css}"/>
+
+
+
+
     <script type="text/javascript" th:inline="javascript">
         (function(window){
             window.appInfo = {
@@ -40,7 +45,7 @@
 
 
 <!-- Site wrapper -->
-<div class="wrapper">
+<div class="wrapper" th:classappend="${@appContextHolder.isFullyAuthenticated()} ? '' : 'hidden'">
 
     <header th:replace="fragments/header"></header>
 
@@ -115,7 +120,7 @@
 <script th:src="@{/js/vendor/fastclick/lib/fastclick.js}"></script>
 
 <script th:src="@{/js/admin/site.js}"></script>
-<script th:if="${@applicationContextHolder.isProfile('dev')}" th:src="@{/js/admin/dev.js}"></script>
+<script th:if="${@appContextHolder.isProfile('dev')}" th:src="@{/js/admin/dev.js}"></script>
 
 <script th:src="@{/js/vendor/requirejs/require.js}"></script>
 <script th:src="@{/js/main.js}"></script>

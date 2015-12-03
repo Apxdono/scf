@@ -1,9 +1,8 @@
 define([
     'require',
     'angular',
-    'angular-http-auth',
 ],function(r,ng){
-    var mod = ng.module('app.controllers',['http-auth-interceptor']);
+    var mod = ng.module('app.controllers',[]);
     function $config($controllerProvider,$compileProvider, $filterProvider, $provide){
         mod.register = {
             controller: $controllerProvider.register,

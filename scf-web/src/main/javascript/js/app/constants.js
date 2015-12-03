@@ -6,8 +6,8 @@ define([
     constants.constant("APP_EVENT", {
         UPDATE_PARTIALS: "app:updatePartials",
         SCOPE_DESTROY : '$destroy',
-        LOGIN_REQUIRED : 'app:login-required',
-        LOGIN_SUCCESS : 'app:login-success',
+        LOGIN_REQUIRED : 'event:auth-loginRequired',
+        LOGIN_SUCCESS : 'event:auth-loginConfirmed',
         LOGIN_ERROR : 'app:login-error',
         FORBIDDEN_RESOURCE : 'app:resource-forbidden',
     });

@@ -8,6 +8,8 @@
     }
 
     devTools.logout = function(){
-        $.get(ctx+'/logout').then();
+        $.get(ctx+'/logout').then(function(){
+            window.location.reload();
+        });
     }
 })(window,jQuery);
