@@ -8,7 +8,7 @@ define([
         SCOPE_DESTROY : '$destroy',
         LOGIN_REQUIRED : 'event:auth-loginRequired',
         LOGIN_SUCCESS : 'event:auth-loginConfirmed',
-        LOGIN_ERROR : 'app:login-error',
+        LOGIN_ERROR : 'event:auth-loginCancelled',
         FORBIDDEN_RESOURCE : 'app:resource-forbidden',
     });
     constants.constant("HTML_EVENT",{

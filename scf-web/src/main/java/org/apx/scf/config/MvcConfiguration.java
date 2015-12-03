@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @EnableAsync
 @ComponentScan("org.apx.scf.web")
-@Import({ThymeleafConfiguration.class})
+@Import({RepositoryRestConfig.class,ThymeleafConfiguration.class})
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
     static final int CACHE_PERIOD = 3600;

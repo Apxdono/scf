@@ -1,7 +1,9 @@
 package org.apx.scf.domain.security;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apx.scf.annotations.EncodeField;
 import org.apx.scf.annotations.EncodedFields;
+import org.apx.scf.jacson.views.VUsers;
 import org.springframework.cglib.reflect.FastMethod;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,6 +31,7 @@ public class User extends SecuredBaseEntity implements UserDetails, Serializable
     String password;
 
     @Column(name = "password")
+    @JsonView(VUsers.Never.class)
     public String getPassword() {
         return password;
     }
@@ -42,36 +45,42 @@ public class User extends SecuredBaseEntity implements UserDetails, Serializable
 
     @Override
     @Transient
+    @JsonView(VUsers.Never.class)
     public Collection<SecurityDescriptor> getAuthorities() {
         return getSecurityDescriptors();
     }
 
     @Override
     @Transient
+    @JsonView(VUsers.Never.class)
     public boolean isAccountNonExpired() {
         return !getDeleted();
     }
 
     @Override
     @Transient
+    @JsonView(VUsers.Never.class)
     public boolean isAccountNonLocked() {
         return !getDeleted();
     }
 
     @Override
     @Transient
+    @JsonView(VUsers.Never.class)
     public boolean isCredentialsNonExpired() {
         return !getDeleted();
     }
 
     @Override
     @Transient
+    @JsonView(VUsers.Never.class)
     public String getUsername() {
         return getSystemName();
     }
 
     @Override
     @Transient
+    @JsonView(VUsers.Never.class)
     public boolean isEnabled() {
         return !getDeleted();
     }
