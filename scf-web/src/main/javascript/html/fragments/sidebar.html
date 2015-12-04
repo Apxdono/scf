@@ -68,14 +68,14 @@
         <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
         <!-- /.tab-pane -->
         <!-- Settings tab content -->
-        <div class="tab-pane" id="control-sidebar-settings-tab">
+        <div class="tab-pane" id="control-sidebar-settings-tab" data-ng-controller="LoginCtrl">
             <a href="#" th:if="${@appContextHolder.isProfile('dev')}"
                onclick="devTools.reloadWebContext('web');return false;">Перезагрузить веб-контекст приложения</a><br/>
             <a href="#" th:if="${@appContextHolder.isProfile('dev')}"
                onclick="devTools.reloadWebContext('root');return false;">Перезагрузить основной контекст приложения</a>
             <br/>
             <a href="#" th:if="${@appContextHolder.isProfile('dev')}"
-               onclick="devTools.logout();return false;">Выйти вон</a>
+               ng-click="logout()">Выйти вон</a>
         </div>
         <!-- /.tab-pane -->
     </div>

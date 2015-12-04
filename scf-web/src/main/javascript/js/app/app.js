@@ -3,10 +3,9 @@ define([
     'angular',
     'angular-router',
     './constants',
-    './service/login-service',
-    './controller/main-ctrl',
-    './controller/login-ctrl',
-    './directive/part-refresh-directive'
+    './service/service-index',
+    './directive/directive-index',
+    './controller/controller-index'
 ],function(r,ng){
     var app = ng.module('app',['ngRoute','app.services','app.controllers','app.directives']);
 

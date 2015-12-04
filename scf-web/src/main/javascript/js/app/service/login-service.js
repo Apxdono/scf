@@ -4,11 +4,17 @@ define([
     './service-module'
 ], function (r, ng, mod) {
 
-    function LoginService($log, $rootScope, $http, appevent, authService) {
+    function LoginService($log, $rootScope, $http,$timeout, appevent, authService) {
         var s = {};
-        function flush(){
+
+        var lasttimeout = ng.noop;
+        function flush() {
             s.user = {};
             s.isLoggedIn = false;
+            $timeout.cancel(lasttimeout);
+            lasttimeout = $timeout(function(){
+                s.pending = false;
+            },1000);
         }
 
         function fetchProfile() {
@@ -16,37 +22,41 @@ define([
                 method: 'GET',
                 url: '/profile'
             }).then(function (res) {
-                    $log.info('login-success', res);
-                    s.user = res.data;
-                    s.isLoggedIn = true;
-                    authService.loginConfirmed(s.user);
-                }
-            )
+                $log.info('login-success', res);
+                s.user = res.data;
+                s.isLoggedIn = true;
+                s.pending = false;
+            }, flush);
         };
 
-        function fetchAfterLogin(){
-            fetchProfile(true);
-        }
-
         s.login = function (data) {
+            s.pending = true;
             $http({
                 method: 'POST',
                 url: '/login',
                 data: data,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 transformRequest: commons.transformRequest
-            }).then(ng.noop, function (reject) {
-                $log.info('login-error', reject);
-            })
+            }).then(authService.loginConfirmed, fetchProfile)
         };
 
-        $rootScope.$on(appevent.LOGIN_REQUIRED,flush);
-        $rootScope.$on(appevent.LOGIN_ERROR,flush);
+        s.logout  = function () {
+            s.pending = true;
+            $http({
+                method: 'POST',
+                url: '/logout',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: commons.transformRequest
+            }).then(fetchProfile, fetchProfile)
+        };
+
+        $rootScope.$on(appevent.LOGIN_REQUIRED, flush);
+        $rootScope.$on(appevent.LOGIN_ERROR, flush);
         fetchProfile();
         return s;
     }
 
-    LoginService.$inject = ['$log', '$rootScope', '$http', 'APP_EVENT', 'authService'];
-    (mod.register || mod).service('LoginService',LoginService);
+    LoginService.$inject = ['$log', '$rootScope', '$http','$timeout', 'APP_EVENT', 'authService'];
+    (mod.register || mod).service('LoginService', LoginService);
 
 });

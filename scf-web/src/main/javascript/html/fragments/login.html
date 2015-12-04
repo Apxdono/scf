@@ -9,7 +9,7 @@
 <body>
 
 
-<div class="login-box" th:fragment="main"  th:classappend="${@appContextHolder.isFullyAuthenticated()} ? 'hidden' : ''">
+<div class="login-box" th:fragment="main"  th:classappend="${@appContextHolder.isFullyAuthenticated()} ? 'hidden' : ''" toggler="false">
     <div class="login-logo">
         <a href="@#"><b>Admin</b>LTE</a>
     </div>
@@ -36,7 +36,10 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="login()">Войти</button>
+                    <button type="button" class="btn btn-primary btn-block btn-flat has-spinner" ng-disabled="loginPending()" ng-click="login()" >
+                        <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                        Войти
+                    </button>
                 </div>
                 <!-- /.col -->
             </div>

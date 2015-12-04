@@ -45,7 +45,7 @@
 
 
 <!-- Site wrapper -->
-<div class="wrapper" th:classappend="${@appContextHolder.isFullyAuthenticated()} ? '' : 'hidden'">
+<div class="wrapper" th:classappend="${@appContextHolder.isFullyAuthenticated()} ? '' : 'hidden'" toggler="true">
 
     <header th:replace="fragments/header"></header>
 
