@@ -8,5 +8,5 @@ vendor
 *.iml
 .project
 .classpath
-src/main/webapp/static/vendor/*
-src/main/webapp/static/js/*
+bundle.js
+bundle.min.js
