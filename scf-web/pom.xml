@@ -126,11 +126,11 @@
                         <configuration>
                             <failOnMissingWebXml>false</failOnMissingWebXml>
                             <webResources>
-                                <resource>
-                                    <!-- this is relative to the pom.xml directory -->
-                                    <directory>src/main/javascript</directory>
-                                    <targetPath>/WEB-INF/static</targetPath>
-                                </resource>
+                                <!--<resource>-->
+                                    <!--&lt;!&ndash; this is relative to the pom.xml directory &ndash;&gt;-->
+                                    <!--<directory>src/main/javascript</directory>-->
+                                    <!--<targetPath>/WEB-INF/static</targetPath>-->
+                                <!--</resource>-->
                                 <!--<resource>-->
                                     <!--<filtering>true</filtering>-->
                                     <!--<directory>src/main/webapp</directory>-->

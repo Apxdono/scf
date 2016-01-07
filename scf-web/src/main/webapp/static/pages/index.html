@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Gello</title>
+</head>
+<body ng-controller="MainController" ng-bind="greeting">
+    <!--greeting text-->
+</body>
+<script type="text/javascript" th:src="@{static/js/bundle.js}"
+        th:if="${#arrays.contains(@environment.getActiveProfiles(),'dev')}"></script>
+<script type="text/javascript" th:src="@{static/js/bundle.min.js}"
+        th:if="${#arrays.contains(@environment.getActiveProfiles(),'prod')}"></script>
+</html>

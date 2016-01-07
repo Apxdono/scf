@@ -19,6 +19,11 @@ public class LayoutController {
         return "index";
     }
 
+    @RequestMapping("/alala")
+    public String getOtherRoot(HttpServletRequest request) {
+        return "alala";
+    }
+
     @RequestMapping("/partials")
     public String getUpdatedPartialPage(@RequestParam("template") String templateName,@RequestParam("partName") String partName){
         StringBuilder sb = new StringBuilder();

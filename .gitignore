@@ -1,10 +1,12 @@
 target
 dist
 node_modules
+semantic
 vendor
 .idea
 *.prj
 *.iml
 .project
 .classpath
-
+src/main/webapp/static/vendor/*
+src/main/webapp/static/js/*
