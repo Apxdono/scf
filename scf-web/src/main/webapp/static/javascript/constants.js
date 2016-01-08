@@ -10,7 +10,14 @@ var constants = {
         main : 'MainController'
     },
     service : {
-        user : 'UserService'
+        user : 'UserService',
+        notificator : 'NotificatorService',
+        urlModifyInterceptor : 'UrlModifyInterceptorFactory'
+    },
+    event : {
+        scope : {
+            destroy : '$destroy'
+        }
     }
 };
 module.exports = constants;

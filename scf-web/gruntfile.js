@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-ng-annotate');
 
-    grunt.registerTask('default', ['clean','jshint','browserify', 'watch']);
+    grunt.registerTask('default', ['clean','jshint','browserify']);
     grunt.registerTask('prod', ['clean','jshint','browserify', 'uglify']);
 
     grunt.initConfig({

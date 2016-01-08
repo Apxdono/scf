@@ -5,8 +5,25 @@
 <head>
     <meta charset="UTF-8" />
     <title>Gello</title>
+    <link rel="stylesheet" type="text/css" th:href="@{static/vendor/semantic/dist/semantic.min.css}"/>
+    <script type="text/javascript" th:inline="javascript">
+        (function(window){
+            window.appInfo = {
+                contextPath : /*[[${#httpServletRequest.contextPath}]]*/ ''
+            }
+        })(window);
+    </script>
 </head>
-<body ng-controller="MainController" ng-bind="greeting">
+<body ng-controller="MainController" >
+    <div ng-bind="greeting"></div>
+    <div>User loaded: <span ng-bind="user.username"></span></div>
+
+    <div>
+        <input type="text" name="userName" ng-model="username"/>
+        <input type="password" name="password" ng-model="password"/>
+        <button type="button" ng-click="login()">Login</button>
+        <button type="button" ng-click="userSvc.logout()">Logout</button>
+    </div>
     <!--greeting text-->
 </body>
 <script type="text/javascript" th:src="@{static/js/bundle.js}"
