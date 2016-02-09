@@ -18,4 +18,18 @@ angular.element(document).ready(function() {
     console.log(appName,app);
 });
 
+$('.ui.sticky').sticky({
+        context: '#content'
+    });
+
+//jQuery(function($) {
+//    $(window).on("scroll", function () {
+//        if ($(this).scrollTop() > 59) {
+//            $("#header").addClass("stickyHeader");
+//        }
+//        else {
+//            $("#header").removeClass("stickyHeader");
+//        }
+//    });
+//});
 

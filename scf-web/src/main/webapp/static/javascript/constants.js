@@ -17,6 +17,10 @@ var constants = {
     event : {
         scope : {
             destroy : '$destroy'
+        },
+        login : {
+            required : 'event:auth-loginRequired',
+            confirmed : 'event:auth-loginConfirmed'
         }
     }
 };
