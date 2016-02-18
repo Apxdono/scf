@@ -6,10 +6,10 @@ var constants = {
         services : appName+".services",
         directives : appName+".directives"
     },
-    controller : {
+    controllers : {
         main : 'MainController'
     },
-    service : {
+    services : {
         user : 'UserService',
         notificator : 'NotificatorService',
         urlModifyInterceptor : 'UrlModifyInterceptorFactory'
@@ -24,4 +24,10 @@ var constants = {
         }
     }
 };
-module.exports = constants;
+
+if(Object.hasOwnProperty('freeze')){
+    var freeze = Object.freeze;
+    constants = freeze(constants);
+}
+
+module.exports =  constants;

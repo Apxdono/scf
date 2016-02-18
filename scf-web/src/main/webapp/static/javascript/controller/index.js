@@ -1,7 +1,5 @@
-var constants = require('../constants.js'),
-    angular = require('../angular-shim.js');
-var controllers = angular.module(constants.app.controllers,[]);
+var _t = require('../tools.js');
+var controllers = _t.makeModule('controllers',[]);
 module.exports = controllers;
 
-controllers.controller(constants.controller.main,require('./main-controller.js'));
-
+_t.registerUnit(controllers,'controller','main',require('./main-controller.js'));

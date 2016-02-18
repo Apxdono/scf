@@ -1,5 +1,4 @@
-var angular = require('../angular-shim.js');
-var constants = require('../constants.js');
+var _t = require('../tools.js');
 var utils = require('../utils.js');
 module.exports = /*@ngInject*/ NotificatorService;
 function NotificatorService($log){
@@ -9,20 +8,20 @@ function NotificatorService($log){
         _listeners : {},
         subscribe : function(fnName,target,assigner){
             var self = this;
-            assigner = assigner || angular.noop;
-            if(angular.isUndefined(target) || angular.isUndefined(assigner)) {
-                return  angular.noop;
+            assigner = assigner || _t.ng.noop;
+            if(_t.ng.isUndefined(target) || _t.ng.isUndefined(assigner)) {
+                return  _t.ng.noop;
             }
-            if(angular.isUndefined(self._listeners[fnName])){
+            if(_t.ng.isUndefined(self._listeners[fnName])){
                 self._listeners[fnName] = [];
             }
-            var cb = angular.isFunction(assigner) ? assigner : function(v){
+            var cb = _t.ng.isFunction(assigner) ? assigner : function(v){
                 target[assigner] = v;
             };
             var listener = {target : target,callback : cb};
             self._listeners[fnName].push(listener);
-            var ready = (self[fnName] || angular.noop).call();
-            if(!angular.isUndefined(ready)){
+            var ready = (self[fnName] || _t.ng.noop).call();
+            if(!_t.ng.isUndefined(ready)){
                 cb(ready);
             }
             var clear = function(){
@@ -30,7 +29,7 @@ function NotificatorService($log){
                 utils.arrays.remove(self._listeners[fnName],listener);
             };
 
-            return target.constructor.name !== 'Scope' ? (clear) : (target.$on(constants.event.scope.destroy,clear),  angular.noop);
+            return target.constructor.name !== 'Scope' ? (clear) : (target.$on(_t.constants.event.scope.destroy,clear),  _t.ng.noop);
         },
         notify : function(fnName,value){
             var self = this, listeners =self._listeners[fnName];
@@ -45,7 +44,7 @@ function NotificatorService($log){
 
     var extender = {
         addNature : function(target){
-            return angular.extend(target,angular.copy(service,{}));
+            return _t.ng.extend(target,_t.ng.copy(service,{}));
         },
         notify : service.notify
     };

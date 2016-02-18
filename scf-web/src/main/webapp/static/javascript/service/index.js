@@ -1,9 +1,7 @@
-var constants = require('../constants.js'),
-    angular = require('../angular-shim.js');
-var services = angular.module(constants.app.services,[]);
+var _t = require('../tools.js');
+var services = _t.makeModule('services',[]);
 module.exports = services;
-
-services.service(constants.service.notificator,require('./notificator-service.js'));
-services.service(constants.service.user,require('./user-service.js'));
-services.factory(constants.service.urlModifyInterceptor,require('./url-modify-interceptor.js'));
+_t.registerUnit(services,'service','notificator',require('./notificator-service.js'));
+_t.registerUnit(services,'service','user',require('./user-service.js'));
+_t.registerUnit(services,'factory','urlModifyInterceptor',require('./url-modify-interceptor.js'));
 

@@ -1,35 +1,19 @@
-var $ = require('jquery');
-window.jQuery = $;
-require('semantic');
-var angular = require('./angular-shim.js');
-var constants = require('./constants.js');
+var _t = require('./tools.js');
 var controllers = require('./controller/index.js');
 var services = require('./service/index.js');
-var appName = constants.app.name;
+var appName = _t.constants.app.name;
 
-var app = angular.module(appName,['ngRoute','http-auth-interceptor',constants.app.services, constants.app.controllers]);
+var app = _t.ng.module(appName,['ngRoute','http-auth-interceptor', _t.constants.app.services, _t.constants.app.controllers]);
 /*@ngInject*/
 app.config(function($httpProvider) {
-    $httpProvider.interceptors.push(constants.service.urlModifyInterceptor);
+    $httpProvider.interceptors.push(_t.constants.services.urlModifyInterceptor);
 });
 
-angular.element(document).ready(function() {
-    angular.bootstrap(document, [appName]);
+_t.ng.element(document).ready(function() {
+    _t.ng.bootstrap(document, [appName]);
     console.log(appName,app);
 });
 
-$('.ui.sticky').sticky({
+_t.$('.ui.sticky').sticky({
         context: '#content'
     });
-
-//jQuery(function($) {
-//    $(window).on("scroll", function () {
-//        if ($(this).scrollTop() > 59) {
-//            $("#header").addClass("stickyHeader");
-//        }
-//        else {
-//            $("#header").removeClass("stickyHeader");
-//        }
-//    });
-//});
-
