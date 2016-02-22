@@ -16,7 +16,7 @@ var constants = {
     },
     directives : {
         testDir : 'testDirective',
-        loginBox : 'loginBox'
+        loginBox : 'appLoginBox'
     },
     event : {
         scope : {

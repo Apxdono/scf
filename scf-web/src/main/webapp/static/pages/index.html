@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Gello</title>
+    <link rel="stylesheet" type="text/css" th:href="@{static/vendor/semantic/dist/components/reset.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{static/vendor/semantic/dist/semantic.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{static/css/layout.css}"/>
     <script type="text/javascript" th:inline="javascript">
         (function (window) {
             window.appInfo = {
@@ -22,25 +24,11 @@
             left:260px;
             width: 100%;
         }
-
-        .login-box2{
-            margin: 0 auto;
-            background : white;
-            border-radius: 5px;
-            border : 1px solid #CCC;
-            width : 200px;
-        }
-
-        /*@media (min-width: 780px) {*/
-            /*.stickyHeader {*/
-                /*position: fixed;*/
-            /*}*/
-        /*}*/
     </style>
 </head>
-<body id="body">
+<body id="body" class="body-background">
 
-<div class="login-box" lb-target="#site-content"></div>
+<div class="app-login-box ui middle aligned center aligned grid" lb-target="#site-content" ></div>
 
 
 <div id="site-content">

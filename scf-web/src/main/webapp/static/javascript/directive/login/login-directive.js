@@ -13,7 +13,7 @@ function LoginDirective($log, UserService) {
                 UserService.login($scope.username,$scope.password);
             };
         },
-        templateUrl : './login-box.html',
+        templateUrl : './static/components/login/login-box.html',
         link: function (scope, element, attributes) {
             var loginBox = element;
             var siteContent = _t.ng.element(scope.lbTarget);
