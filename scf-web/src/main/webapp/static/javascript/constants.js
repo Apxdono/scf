@@ -14,6 +14,10 @@ var constants = {
         notificator : 'NotificatorService',
         urlModifyInterceptor : 'UrlModifyInterceptorFactory'
     },
+    directives : {
+        testDir : 'testDirective',
+        loginBox : 'loginBox'
+    },
     event : {
         scope : {
             destroy : '$destroy'

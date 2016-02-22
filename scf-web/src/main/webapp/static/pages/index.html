@@ -23,7 +23,13 @@
             width: 100%;
         }
 
-
+        .login-box2{
+            margin: 0 auto;
+            background : white;
+            border-radius: 5px;
+            border : 1px solid #CCC;
+            width : 200px;
+        }
 
         /*@media (min-width: 780px) {*/
             /*.stickyHeader {*/
@@ -33,9 +39,11 @@
     </style>
 </head>
 <body id="body">
-<header id="header" class="ui sticky fixed top">
-    Some header
-</header>
+
+<div class="login-box" lb-target="#site-content"></div>
+
+
+<div id="site-content">
 <div id="menu" class="ui sidebar visible inverted left vertical menu">
     <a class="item">
         Item 1
@@ -48,7 +56,9 @@
     </a>
 </div>
 <div class="pusher" id="content">
-
+    <header id="header" class="">
+        Some header
+    </header>
     <div  ng-controller="MainController" style="padding: 10px 20px">
         <div ng-bind="greeting"></div>
         <div>User loaded: <span ng-bind="user.username"></span></div>
@@ -58,6 +68,7 @@
             <input type="password" name="password" ng-model="password"/>
             <button type="button" ng-click="login()">Login</button>
             <button type="button" ng-click="userSvc.logout()">Logout</button>
+            <div test-directive=""></div>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
@@ -67,7 +78,7 @@
         <!--greeting text-->
     </div>
 </div>
-
+</div>
 
 </body>
 <script type="text/javascript" th:src="@{static/js/bundle.js}"

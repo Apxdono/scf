@@ -36,6 +36,11 @@ module.exports = function(grunt) {
             src : ['<%= dir.src %>/**/*.js']
         },
         browserify: {
+            options : {
+              alias : [
+                  './src/main/webapp/static/javascript/tools.js:tools'
+              ]
+            },
             main: {
                 src: '<%= dir.src %>/<%= bundle.src %>',
                 dest: '<%= dir.dest %>/<%= bundle.dev %>',
